@@ -1,0 +1,6 @@
+/target
+debug/
+/.idea/
+.directory
+Cargo.lock
+**/*.rs.bk
