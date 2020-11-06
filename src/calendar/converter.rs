@@ -117,6 +117,6 @@ pub mod converter {
     }
 
     pub fn set_double_digit(value: &str) -> String {
-        format!("{:2}", value)
+        format!("{:02}", value)
     }
 }
