@@ -6,7 +6,7 @@ P.S: this is rust version of [pouriya/tir](https://github.com/pouriya/tir) writt
 ![screenshot](https://github.com/graymind75/shams/raw/main/assets/Screenshot_20201105_222232.png)  
 
 ## Installation
-you can [download linux binary](https://github.com/graymind75/shams/raw/main/assets/shams) and put it in `/usr/local/bin` to run it wherever you want in terminal.  
+you can [download](https://github.com/graymind75/shams/releases) last release binary from release section and put it in `/usr/local/bin` to run it wherever you want in terminal. 
 ##### do not forget give executable permission to the binary: `sudo chmod +x shams`
 
 ## Usage
