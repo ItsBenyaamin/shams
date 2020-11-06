@@ -39,7 +39,7 @@ pub mod converter {
                 "سه شنبه" => "3-Shanbeh",
                 "چهارشنبه" => "4-Shanbeh",
                 "پنج شنبه" => "5-Shanbeh",
-                "جمعه" => "Jom'eh   ",
+                "جمعه" => "Adineh   ",
                 _ => "!",
             }
         }
@@ -117,6 +117,9 @@ pub mod converter {
     }
 
     pub fn set_double_digit(value: &str) -> String {
-        format!("{:02}", value)
+        if value.len() == 1 {
+            return format!("0{}", value)
+        }
+        value.to_string()
     }
 }
