@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Column {
@@ -6,5 +6,5 @@ pub struct Column {
     pub georgian: String,
     pub hijri: String,
     pub is_holiday: bool,
-    pub is_today: bool
+    pub is_today: bool,
 }

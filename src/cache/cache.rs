@@ -9,7 +9,6 @@ pub struct Cache {
 }
 
 impl Cache {
-
     pub fn new(calendar: Calendar) -> Self {
         Cache {
             cached_date: chrono::Utc::now().format("%Y-%m-%d").to_string(),
@@ -32,7 +31,3 @@ impl Cache {
         Ok(cache)
     }
 }
-
-
-
-

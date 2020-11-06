@@ -7,7 +7,7 @@ mod shams;
 use output::printer::printer::*;
 use shams::*;
 
-type Result<T> = std::result::Result<T,Box<dyn std::error::Error + Send + Sync + 'static >>;
+type Result<T> = std::result::Result<T, Box<dyn std::error::Error + Send + Sync + 'static>>;
 
 #[tokio::main]
 async fn main() -> crate::Result<()> {
@@ -15,18 +15,16 @@ async fn main() -> crate::Result<()> {
 
     if args.len() == 1 {
         go_with_cache().await?;
-    }else if args.len() > 2 {
+    } else if args.len() > 2 {
         println!("too many args! see 'shams -h.");
-    }else {
+    } else {
         match args[1].as_str() {
-            "-h" | "--help" => { print_help() }
-            "-u" | "--update" => { request().await? }
-            "-a" | "--about" => { print_about() }
-            _ => { print_help() }
+            "-h" | "--help" => print_help(),
+            "-u" | "--update" => request().await?,
+            "-a" | "--about" => print_about(),
+            _ => print_help(),
         }
     }
 
     Ok(())
 }
-
-

@@ -17,7 +17,7 @@ pub mod converter {
                 "10" => "Dey",
                 "11" => "Bahman",
                 "12" => "Esfand",
-                _ => "!"
+                _ => "!",
             }
         }
 
@@ -27,23 +27,22 @@ pub mod converter {
                 "04" | "05" | "06" => "Tabestan",
                 "07" | "08" | "09" => "Paeez   ",
                 "10" | "11" | "12" => "Zemestan",
-                _ => "!"
+                _ => "!",
             }
         }
 
         pub fn get_shamsi_day_by_name(day_name: &str) -> &str {
             match day_name {
-                "شنبه" =>       "Shanbeh  ",
-                "یکشنبه" =>     "1-Shanbeh",
-                "دوشنبه" =>     "2-Shanbeh",
-                "سه شنبه" =>    "3-Shanbeh",
-                "چهارشنبه" =>   "4-Shanbeh",
-                "پنج شنبه" =>   "5-Shanbeh",
-                "جمعه" =>       "Jom'eh   ",
-                _ => "!"
+                "شنبه" => "Shanbeh  ",
+                "یکشنبه" => "1-Shanbeh",
+                "دوشنبه" => "2-Shanbeh",
+                "سه شنبه" => "3-Shanbeh",
+                "چهارشنبه" => "4-Shanbeh",
+                "پنج شنبه" => "5-Shanbeh",
+                "جمعه" => "Jom'eh   ",
+                _ => "!",
             }
         }
-
     }
 
     pub mod georgian {
@@ -62,7 +61,7 @@ pub mod converter {
                 "10" => "October",
                 "11" => "November",
                 "12" => "December",
-                _ => "!"
+                _ => "!",
             }
         }
 
@@ -72,10 +71,9 @@ pub mod converter {
                 "04" | "05" | "06" => "Sprint  ",
                 "07" | "08" | "09" => "Summer  ",
                 "10" | "11" | "12" => "Autumn  ",
-                _ => "!"
+                _ => "!",
             }
         }
-
     }
 
     //numbers
@@ -119,7 +117,6 @@ pub mod converter {
     }
 
     pub fn set_double_digit(value: &str) -> String {
-        format!("{:2}",value)
+        format!("{:2}", value)
     }
-
 }

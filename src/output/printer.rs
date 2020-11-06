@@ -1,8 +1,8 @@
 pub mod printer {
-    use crate::calendar::converter::converter::*;
-    use crate::calendar::column::Column;
-    use colored_truecolor::Colorize;
     use crate::calendar::calendar::Calendar;
+    use crate::calendar::column::Column;
+    use crate::calendar::converter::converter::*;
+    use colored_truecolor::Colorize;
 
     pub fn print(calendar: &Calendar) {
         print_header(&calendar.shamsi, &calendar.georgian);
@@ -47,7 +47,15 @@ pub mod printer {
                 shamsi = shamsi.as_str().red().to_string();
             }
             if c.is_today {
-                shamsi_part.push_str(format!("  {}{}{}  ", "(".bold().yellow(), shamsi.as_str().bold(), ")".bold().yellow()).as_str());
+                shamsi_part.push_str(
+                    format!(
+                        "  {}{}{}  ",
+                        "(".bold().yellow(),
+                        shamsi.as_str().bold(),
+                        ")".bold().yellow()
+                    )
+                    .as_str(),
+                );
             } else {
                 shamsi_part.push_str(format!("   {}   ", shamsi).as_str());
             }
@@ -80,5 +88,4 @@ pub mod printer {
         println!("-Website:    https://benyaamin.com");
         println!("-Github:     https://github.com/graymind75");
     }
-
 }

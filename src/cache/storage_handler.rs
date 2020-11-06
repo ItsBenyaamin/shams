@@ -6,11 +6,9 @@ use tokio::io::{AsyncReadExt, AsyncWriteExt};
 fn get_file_path() -> crate::Result<PathBuf> {
     let cache_folder = dirs::cache_dir();
     let cache_folder = match cache_folder {
-        Some(c) => {
-            c.to_string_lossy().to_string()
-        },
+        Some(c) => c.to_string_lossy().to_string(),
         None => {
-          return Err("get file path failed".into());
+            return Err("get file path failed".into());
         }
     };
 
