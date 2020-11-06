@@ -109,22 +109,17 @@ pub mod converter {
         digits
     }
 
-    pub fn format_with_correct_space(value: &String, dist: i16) -> String {
-        let mut _value = value.clone();
-        let length = _value.len() as i16;
-        let difference = dist - length;
-        for _ in 0..difference {
-            _value.push_str(" ");
-        }
-        _value
+    pub fn format_with_correct_space(value: &str, dist: usize) -> String {
+        let space_count = if dist > value.len() {
+            dist - value.len()
+        } else {
+            0
+        };
+        format!("{}{}", value, " ".repeat(space_count))
     }
 
-    pub fn set_double_digit(value: &String) -> String {
-        let mut _value = value.clone();
-        if _value.len() == 1 {
-            _value = format!("0{}", _value);
-        }
-        _value
+    pub fn set_double_digit(value: &str) -> String {
+        format!("{:2}",value)
     }
 
 }

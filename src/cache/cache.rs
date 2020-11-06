@@ -1,33 +1,38 @@
-use crate::cache::storage_handler::storage_handler::*;
+use crate::cache::storage_handler::*;
 use crate::calendar::calendar::Calendar;
-use std::error::Error;
-use chrono;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct Cache {
     pub cached_date: String,
-    pub calendar: Calendar
+    pub calendar: Calendar,
 }
 
+impl Cache {
 
-pub async fn store(_calendar: Calendar) -> Result<(), Box<dyn Error>> {
-    let date = chrono::Utc::now().format("%Y-%m-%d");
-    let cache = Cache {
-        cached_date: date.to_string(),
-        calendar: _calendar
-    };
-    let json_string = serde_json::to_string(&cache).unwrap();
-    write_to_cache(json_string).await?;
-    Ok(())
-}
-
-pub async fn restore() -> Result<Cache, Box<dyn Error>> {
-    let result = read_from_cache().await?;
-    let cache = serde_json::from_str::<Cache>(result.as_str())?;
-    let today = chrono::Utc::now().format("%Y-%m-%d").to_string();
-    if !cache.cached_date.eq(&today) {
-        Err("cache is invalid")?
+    pub fn new(calendar: Calendar) -> Self {
+        Cache {
+            cached_date: chrono::Utc::now().format("%Y-%m-%d").to_string(),
+            calendar,
+        }
     }
-    Ok(cache)
+
+    pub async fn store(&self) -> crate::Result<()> {
+        write_to_cache(serde_json::to_string(&self)?).await?;
+        Ok(())
+    }
+
+    pub async fn restore() -> crate::Result<Cache> {
+        let result = read_from_cache().await?;
+        let cache = serde_json::from_str::<Cache>(result.as_str())?;
+        let today = chrono::Utc::now().format("%Y-%m-%d").to_string();
+        if !cache.cached_date.eq(&today) {
+            return Err("cache is invalid".into());
+        }
+        Ok(cache)
+    }
 }
+
+
+
+

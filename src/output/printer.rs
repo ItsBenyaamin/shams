@@ -10,7 +10,7 @@ pub mod printer {
         print_footer();
     }
 
-    pub fn print_header(top_shamsi: &String, top_georgian: &String) {
+    pub fn print_header(top_shamsi: &str, top_georgian: &str) {
         println!("+--------------------------------------------------------------+");
         println!("|{}|", format_with_correct_space(&top_shamsi, 71));
         println!("|{}|", format_with_correct_space(&top_georgian, 71));
@@ -28,7 +28,7 @@ pub mod printer {
         println!("+--------------------------------------------------------------+");
     }
 
-    pub fn print_columns(columns: &Vec<Column>) {
+    pub fn print_columns(columns: &[Column]) {
         print_column(columns[0..7].to_vec());
         print_column(columns[7..14].to_vec());
         print_column(columns[14..21].to_vec());
