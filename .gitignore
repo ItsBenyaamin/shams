@@ -4,3 +4,4 @@ debug/
 .directory
 Cargo.lock
 **/*.rs.bk
+*.iml
