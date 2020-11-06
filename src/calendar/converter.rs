@@ -17,7 +17,7 @@ pub mod converter {
                 "10" => "Dey",
                 "11" => "Bahman",
                 "12" => "Esfand",
-                _ => "!"
+                _ => "!",
             }
         }
 
@@ -27,23 +27,22 @@ pub mod converter {
                 "04" | "05" | "06" => "Tabestan",
                 "07" | "08" | "09" => "Paeez   ",
                 "10" | "11" | "12" => "Zemestan",
-                _ => "!"
+                _ => "!",
             }
         }
 
         pub fn get_shamsi_day_by_name(day_name: &str) -> &str {
             match day_name {
-                "شنبه" =>       "Shanbeh  ",
-                "یکشنبه" =>     "1-Shanbeh",
-                "دوشنبه" =>     "2-Shanbeh",
-                "سه شنبه" =>    "3-Shanbeh",
-                "چهارشنبه" =>   "4-Shanbeh",
-                "پنج شنبه" =>   "5-Shanbeh",
-                "جمعه" =>       "Jom'eh   ",
-                _ => "!"
+                "شنبه" => "Shanbeh  ",
+                "یکشنبه" => "1-Shanbeh",
+                "دوشنبه" => "2-Shanbeh",
+                "سه شنبه" => "3-Shanbeh",
+                "چهارشنبه" => "4-Shanbeh",
+                "پنج شنبه" => "5-Shanbeh",
+                "جمعه" => "Adineh   ",
+                _ => "!",
             }
         }
-
     }
 
     pub mod georgian {
@@ -62,7 +61,7 @@ pub mod converter {
                 "10" => "October",
                 "11" => "November",
                 "12" => "December",
-                _ => "!"
+                _ => "!",
             }
         }
 
@@ -72,10 +71,9 @@ pub mod converter {
                 "04" | "05" | "06" => "Sprint  ",
                 "07" | "08" | "09" => "Summer  ",
                 "10" | "11" | "12" => "Autumn  ",
-                _ => "!"
+                _ => "!",
             }
         }
-
     }
 
     //numbers
@@ -109,22 +107,19 @@ pub mod converter {
         digits
     }
 
-    pub fn format_with_correct_space(value: &String, dist: i16) -> String {
-        let mut _value = value.clone();
-        let length = _value.len() as i16;
-        let difference = dist - length;
-        for _ in 0..difference {
-            _value.push_str(" ");
-        }
-        _value
+    pub fn format_with_correct_space(value: &str, dist: usize) -> String {
+        let space_count = if dist > value.len() {
+            dist - value.len()
+        } else {
+            0
+        };
+        format!("{}{}", value, " ".repeat(space_count))
     }
 
-    pub fn set_double_digit(value: &String) -> String {
-        let mut _value = value.clone();
-        if _value.len() == 1 {
-            _value = format!("0{}", _value);
+    pub fn set_double_digit(value: &str) -> String {
+        if value.len() == 1 {
+            return format!("0{}", value)
         }
-        _value
+        value.to_string()
     }
-
 }

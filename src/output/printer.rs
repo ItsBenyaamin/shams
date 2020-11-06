@@ -1,8 +1,8 @@
 pub mod printer {
-    use crate::calendar::converter::converter::*;
-    use crate::calendar::column::Column;
-    use colored_truecolor::Colorize;
     use crate::calendar::calendar::Calendar;
+    use crate::calendar::column::Column;
+    use crate::calendar::converter::converter::*;
+    use colored_truecolor::Colorize;
 
     pub fn print(calendar: &Calendar) {
         print_header(&calendar.shamsi, &calendar.georgian);
@@ -10,7 +10,7 @@ pub mod printer {
         print_footer();
     }
 
-    pub fn print_header(top_shamsi: &String, top_georgian: &String) {
+    pub fn print_header(top_shamsi: &str, top_georgian: &str) {
         println!("+--------------------------------------------------------------+");
         println!("|{}|", format_with_correct_space(&top_shamsi, 71));
         println!("|{}|", format_with_correct_space(&top_georgian, 71));
@@ -28,7 +28,7 @@ pub mod printer {
         println!("+--------------------------------------------------------------+");
     }
 
-    pub fn print_columns(columns: &Vec<Column>) {
+    pub fn print_columns(columns: &[Column]) {
         print_column(columns[0..7].to_vec());
         print_column(columns[7..14].to_vec());
         print_column(columns[14..21].to_vec());
@@ -47,7 +47,15 @@ pub mod printer {
                 shamsi = shamsi.as_str().red().to_string();
             }
             if c.is_today {
-                shamsi_part.push_str(format!("  {}{}{}  ", "(".bold().yellow(), shamsi.as_str().bold(), ")".bold().yellow()).as_str());
+                shamsi_part.push_str(
+                    format!(
+                        "  {}{}{}  ",
+                        "(".bold().yellow(),
+                        shamsi.as_str().bold(),
+                        ")".bold().yellow()
+                    )
+                    .as_str(),
+                );
             } else {
                 shamsi_part.push_str(format!("   {}   ", shamsi).as_str());
             }
@@ -80,5 +88,4 @@ pub mod printer {
         println!("-Website:    https://benyaamin.com");
         println!("-Github:     https://github.com/graymind75");
     }
-
 }
