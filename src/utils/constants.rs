@@ -1,6 +1,8 @@
 
+pub const OCCASIONS_URL: &str = "https://projects.benyaamin.com/projects/shams";
 pub const CACHE_FOLDER_PATH: &str = "shams";
-pub const CACHE_FILE_NAME: &str = "shams.json";
+pub const OCCASIONS_FILE_NAME: &str = "occasions.json";
+pub const CACHE_FILE_NAME: &str = "cache.json";
 
 
 pub const FARVARDIN: u8 = 31;
@@ -29,7 +31,10 @@ pub fn get_day_count(month_num: u8, is_leap: bool) -> u8 {
         8 => AZAR,
         9 => DEY,
         10 => BAHMAN,
-        11 => ESFAND,
+        11 => {
+            if is_leap { ESFAND + 1 }
+            else { ESFAND }
+        },
         _ => 0
     }
 }
@@ -42,7 +47,7 @@ pub const CHAHAR: &str = "Chahar";
 pub const PANJ: &str = "Panj";
 pub const ADINEH: &str = "Adineh";
 
-pub fn get_day_name(day_of_week: u8) -> &str {
+pub fn get_day_name<'a>(day_of_week: u8) -> &'a str {
     return match day_of_week {
         0 => SHANBE,
         1 => YEK,
@@ -51,6 +56,6 @@ pub fn get_day_name(day_of_week: u8) -> &str {
         4 => CHAHAR,
         5 => PANJ,
         6 => ADINEH,
-        _ => 0
+        _ => ""
     }
 }
