@@ -1,11 +1,13 @@
-#[derive(Debug, Clone, Serialize, Deserialize)]
+use serde::{Serialize, Deserialize};
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Occasions {
-    day: u8,
-    events: Vec<Occasion>
+    pub day: u8,
+    pub events: Vec<Occasion>
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Occasion {
-    title: String,
-    is_holiday: bool
+    pub title: String,
+    pub is_holiday: bool
 }
