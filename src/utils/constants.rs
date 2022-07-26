@@ -1,4 +1,8 @@
 
+pub const CACHE_FOLDER_PATH: &str = "shams";
+pub const CACHE_FILE_NAME: &str = "shams.json";
+
+
 pub const FARVARDIN: u8 = 31;
 pub const ORDIBEHESHT: u8 = 31;
 pub const KHORDAD: u8 = 31;
