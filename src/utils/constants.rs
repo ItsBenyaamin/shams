@@ -60,3 +60,21 @@ pub fn get_day_name<'a>(day_of_week: u8) -> &'a str {
         _ => ""
     }
 }
+
+pub fn get_month_name(month: u8) -> &str {
+    return match month {
+        0 => "Farvardin",
+        1 => "Ordibehesht",
+        2 => "Khordad",
+        3 => "Tir",
+        4 => "Mordad",
+        5 => "Shahrivar",
+        6 => "Mehr",
+        7 => "Aban",
+        8 => "Azar",
+        9 => "Dey",
+        10 => "Bahman",
+        11 => "Esfand",
+        _ => {}
+    }
+}
