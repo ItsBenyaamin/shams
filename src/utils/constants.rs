@@ -3,6 +3,7 @@ pub const OCCASIONS_URL: &str = "https://projects.benyaamin.com/projects/shams";
 pub const SHAMS_FOLDER_NAME: &str = "shams";
 pub const OCCASIONS_FILE_NAME: &str = "occasions.json";
 pub const CALENDAR_FILE_NAME: &str = "cache.json";
+pub const CONFIG_FILE_NAME: &str = "config.json";
 
 
 pub const FARVARDIN: u8 = 31;
