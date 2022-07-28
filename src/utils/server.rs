@@ -1,7 +1,7 @@
 use crate::shams::occasions::Occasions;
 use crate::utils::constants;
 
-pub async fn fetch_occasions(year: u16) -> Option<Vec<Occasions>> {
+pub async fn fetch_occasions(year: i32) -> Option<Vec<Occasions>> {
     let url = format!("{}/{}", constants::OCCASIONS_URL, year);
     let response = reqwest::get(url.as_str())
         .await;

@@ -6,20 +6,20 @@ pub const CALENDAR_FILE_NAME: &str = "cache.json";
 pub const CONFIG_FILE_NAME: &str = "config.json";
 
 
-pub const FARVARDIN: u8 = 31;
-pub const ORDIBEHESHT: u8 = 31;
-pub const KHORDAD: u8 = 31;
-pub const TIR: u8 = 31;
-pub const MORDAD: u8 = 31;
-pub const SHAHRIVAR: u8 = 31;
-pub const MEHR: u8 = 30;
-pub const ABAN: u8 = 30;
-pub const AZAR: u8 = 30;
-pub const DEY: u8 = 30;
-pub const BAHMAN: u8 = 30;
-pub const ESFAND: u8 = 29;
+pub const FARVARDIN: i32 = 31;
+pub const ORDIBEHESHT: i32 = 31;
+pub const KHORDAD: i32 = 31;
+pub const TIR: i32 = 31;
+pub const MORDAD: i32 = 31;
+pub const SHAHRIVAR: i32 = 31;
+pub const MEHR: i32 = 30;
+pub const ABAN: i32 = 30;
+pub const AZAR: i32 = 30;
+pub const DEY: i32 = 30;
+pub const BAHMAN: i32 = 30;
+pub const ESFAND: i32 = 29;
 
-pub fn get_day_count(month_num: u8, is_leap: bool) -> u8 {
+pub fn get_day_count(month_num: i32, is_leap: bool) -> i32 {
     return match month_num {
         0 => FARVARDIN,
         1 => ORDIBEHESHT,
@@ -48,7 +48,7 @@ pub const CHAHAR: &str = "Chahar";
 pub const PANJ: &str = "Panj";
 pub const ADINEH: &str = "Adineh";
 
-pub fn get_day_name<'a>(day_of_week: u8) -> &'a str {
+pub fn get_day_name<'a>(day_of_week: i32) -> &'a str {
     return match day_of_week {
         0 => SHANBE,
         1 => YEK,
@@ -61,7 +61,7 @@ pub fn get_day_name<'a>(day_of_week: u8) -> &'a str {
     }
 }
 
-pub fn get_month_name(month: u8) -> &str {
+pub fn get_month_name(month: i32) -> &str {
     return match month {
         0 => "Farvardin",
         1 => "Ordibehesht",

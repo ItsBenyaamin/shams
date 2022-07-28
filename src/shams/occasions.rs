@@ -3,7 +3,7 @@ use crate::{constants, storage_helper};
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Occasions {
-    pub day: u8,
+    pub day: i32,
     pub events: Vec<Occasion>
 }
 

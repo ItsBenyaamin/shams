@@ -4,8 +4,8 @@ use crate::utils::{constants, storage_helper};
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Config {
     pub is_occasions_fetched: bool,
-    pub fetched_occasions_year: Option<u16>,
-    pub cached_month: Option<u8>,
+    pub fetched_occasions_year: Option<i32>,
+    pub cached_month: Option<i32>,
 }
 
 impl Config {
@@ -28,6 +28,10 @@ impl Config {
         }
 
         Self::new()
+    }
+
+    pub async fn save(&self) {
+        storage_helper::write_to_file(constants::CONFIG_FILE_NAME, self.to_string()).await;
     }
 
 }
