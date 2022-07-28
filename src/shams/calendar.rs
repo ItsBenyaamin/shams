@@ -4,7 +4,6 @@ use colored_truecolor::Colorize;
 use ptime::Tm;
 use serde::{Serialize, Deserialize};
 use serde_json::Value;
-use crate::shams::occasions::Occasions;
 use crate::{constants, storage_helper};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

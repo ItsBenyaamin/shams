@@ -8,10 +8,8 @@ use colored_truecolor::Colorize;
 use ptime::Tm;
 use tabled::object::{Rows, Segment};
 use utils::config::Config;
-use utils::server;
 use shams::calendar;
 use crate::calendar::Calendar;
-use crate::shams::occasions::Occasions;
 use crate::utils::{constants, storage_helper};
 
 type Result = std::result::Result<(), Box<dyn std::error::Error>>;
