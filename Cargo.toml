@@ -17,3 +17,4 @@ online = "3.0.1"
 colored_truecolor = "0.1.0"
 dirs = "3.0"
 tokio = { version = "0.2", features = ["full"] }
+tabled = { version = "0.8.0", features = ["color"] }
