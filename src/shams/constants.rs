@@ -1,11 +1,3 @@
-
-pub const OCCASIONS_URL: &str = "https://projects.benyaamin.com/projects/shams";
-pub const SHAMS_FOLDER_NAME: &str = "shams";
-pub const OCCASIONS_FILE_NAME: &str = "occasions.json";
-pub const CALENDAR_FILE_NAME: &str = "cache.json";
-pub const CONFIG_FILE_NAME: &str = "config.json";
-
-
 pub const FARVARDIN: i32 = 31;
 pub const ORDIBEHESHT: i32 = 31;
 pub const KHORDAD: i32 = 31;
@@ -37,27 +29,6 @@ pub fn get_day_count(month_num: i32, is_leap: bool) -> i32 {
             else { ESFAND }
         },
         _ => 0
-    }
-}
-
-pub const SHANBEH: &str = "Shanbe";
-pub const YEK: &str = "Yek";
-pub const DO: &str = "Do";
-pub const SE: &str = "Se";
-pub const CHAHAR: &str = "Chahar";
-pub const PANJ: &str = "Panj";
-pub const ADINEH: &str = "Adineh";
-
-pub fn get_day_name(day_of_week: i32) -> String {
-    return match day_of_week {
-        0 => SHANBEH.to_string(),
-        1 => YEK.to_string(),
-        2 => DO.to_string(),
-        3 => SE.to_string(),
-        4 => CHAHAR.to_string(),
-        5 => PANJ.to_string(),
-        6 => ADINEH.to_string(),
-        _ => "".to_string()
     }
 }
 
