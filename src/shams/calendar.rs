@@ -1,10 +1,9 @@
-use std::collections::VecDeque;
-use std::fmt::{Display, Formatter};
+use tabled::{Alignment, builder::Builder, Header, ModifyObject, Style};
 use colored_truecolor::Colorize;
 use ptime::Tm;
-use serde::{Serialize, Deserialize};
-use serde_json::Value;
-use crate::{constants, storage_helper};
+use serde::{Deserialize, Serialize};
+use tabled::object::Segment;
+use crate::shams::constants;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Calendar {
@@ -12,7 +11,6 @@ pub struct Calendar {
     pub this_month: i32,
     pub week_day: i32,
     pub today: i32,
-    pub day_name: String,
     pub month_name: String,
     pub days_titles: [String; 7],
     pub days: Vec<String>
@@ -32,12 +30,11 @@ impl Calendar {
         ];
 
         let this_month = pt.tm_mon;
-        let mut calendar = Calendar {
+        let calendar = Calendar {
             this_year: pt.tm_year,
             this_month,
             week_day: pt.tm_wday,
             today: pt.tm_mday,
-            day_name: constants::get_day_name(pt.tm_wday),
             month_name: constants::get_month_name(this_month),
             days_titles: days,
             days: vec![]
@@ -45,19 +42,7 @@ impl Calendar {
         calendar
     }
 
-    pub async fn load() -> Option<Calendar> {
-        let file = storage_helper::read_file(constants::CALENDAR_FILE_NAME).await;
-        if let Some(content) = file {
-            if !content.is_empty() {
-                let calendar: Calendar = serde_json::from_str(&content).unwrap();
-                return Some(calendar);
-            }
-        }
-
-        None
-    }
-
-    pub fn days(start_offset: i32, days_count: i32) -> Vec<String> {
+    pub fn days(start_offset: i32, days_count: i32, today: i32) -> Vec<String> {
         let mut numeric_days = vec![];
         for i in (1..days_count + 1).rev() {
             numeric_days.push(i);
@@ -66,8 +51,12 @@ impl Calendar {
         let mut days: Vec<String> = vec![];
         for day in 0..(6 * 7) {
             if day >= (start_offset  as usize) && !numeric_days.is_empty() {
-                let pd = numeric_days.pop().unwrap_or(0);
-                days.push(pd.to_string());
+                let number = numeric_days.pop().unwrap_or(0);
+                let mut day_string = number.to_string();
+                if number == today {
+                    day_string = format!("[{}]", day_string);
+                }
+                days.push(day_string);
             }else {
                 days.push("".to_string());
             }
@@ -78,3 +67,63 @@ impl Calendar {
 
 }
 
+
+pub fn print_calendar(calendar: &mut Calendar) {
+    let month_start_point = ptime::from_persian_date(
+        calendar.this_year,
+        calendar.this_month,
+        1
+    ).unwrap();
+
+    let days_count = constants::get_day_count(
+        calendar.this_month,
+        month_start_point.is_leap()
+    );
+
+    calendar.days = Calendar::days(month_start_point.tm_wday, days_count, calendar.today);
+
+    let mut builder = Builder::default();
+    builder.set_columns(&calendar.days_titles);
+
+    let mut start = 0;
+    let mut until = 7;
+
+    loop {
+        let friday = calendar.days.get(until - 1).unwrap().red().to_string();
+        calendar.days[until - 1] = friday;
+
+        builder.add_record(&calendar.days[start..until]);
+
+        start = until;
+        until = until + 7;
+
+        if until >= calendar.days.len() - 1 {
+            break;
+        }
+    }
+
+    let week_day = if calendar.week_day == 0 {
+        "Shanbeh".to_string()
+    }else if calendar.week_day == 6 {
+        "Adineh".to_string()
+    }else {
+        format!("{}-Shanbeh", calendar.week_day)
+    };
+    let formatted_header = format!(
+        r"
+Emruz: {}  {}  {}({})  {}  {}
+        ",
+        week_day,
+        calendar.today + 1,
+        calendar.month_name,
+        calendar.this_month,
+        calendar.this_year,
+        "Tabestan"
+    ).bold().to_string();
+
+    let table = builder.build()
+        .with(Header(formatted_header))
+        .with(Style::extended())
+        .with(Segment::all().modify().with(Alignment::center()));
+    println!("{}", table);
+}
