@@ -15,7 +15,7 @@ Well let's have it in terminal.
   * ##### DO NOT forget to give executable permission to the binary: `sudo chmod +x shams`
 
 ### - Windows
-  * Create a `C:\bin\` folder.
+  * Create a `C:\bin\` folder and Copy the binary to it.
 
   * Edit `Environment Variables` and add `C:\bin\` to PATH.
 
