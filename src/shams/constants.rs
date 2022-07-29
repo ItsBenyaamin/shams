@@ -49,3 +49,46 @@ pub fn get_month_name(month: i32) -> String {
         _ => "".to_string()
     }
 }
+
+pub fn get_season_name(month: i32) -> String {
+    return match month {
+        0|1|2 => "Bahar".to_string(),
+        3|4|5 => "Tabestan".to_string(),
+        6|7|8 => "Paeez".to_string(),
+        9|10|11 => "Zemestan".to_string(),
+        _ => "".to_string()
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use crate::shams::constants;
+
+    #[test]
+    fn test_season_name() {
+        for i in 0..3 {
+            let result = constants::get_season_name(i);
+            println!("Bahar: {result}");
+            assert_eq!("Bahar".to_string(), result)
+        }
+
+        for i in 3..6 {
+            let result = constants::get_season_name(i);
+            println!("Tabestan: {result}");
+            assert_eq!("Tabestan".to_string(), result)
+        }
+
+        for i in 6..9 {
+            let result = constants::get_season_name(i);
+            println!("Paeez: {result}");
+            assert_eq!("Paeez".to_string(), result)
+        }
+
+        for i in 9..12 {
+            let result = constants::get_season_name(i);
+            println!("Zemestan: {result}");
+            assert_eq!("Zemestan".to_string(), result)
+        }
+    }
+
+}

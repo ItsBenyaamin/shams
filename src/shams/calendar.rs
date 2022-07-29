@@ -118,7 +118,7 @@ Emruz: {}  {}  {}({})  {}  {}
         calendar.month_name,
         calendar.this_month,
         calendar.this_year,
-        "Tabestan"
+        constants::get_season_name(calendar.this_month)
     ).bold().to_string();
 
     let table = builder.build()
