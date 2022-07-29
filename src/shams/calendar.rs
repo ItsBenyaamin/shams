@@ -1,11 +1,10 @@
-use tabled::{Alignment, builder::Builder, Header, ModifyObject, Style};
-use colored_truecolor::Colorize;
 use ptime::Tm;
-use serde::{Deserialize, Serialize};
+use tabled::{Alignment, builder::Builder, Header, ModifyObject, Style};
 use tabled::object::Segment;
+use colored_truecolor::Colorize;
 use crate::shams::constants;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone)]
 pub struct Calendar {
     pub this_year: i32,
     pub this_month: i32,
@@ -125,5 +124,6 @@ Emruz: {}  {}  {}({})  {}  {}
         .with(Header(formatted_header))
         .with(Style::extended())
         .with(Segment::all().modify().with(Alignment::center()));
-    println!("{}", table);
+    println!("\n{}", table);
+    println!("  Shams by Benyamin Eskandari - Benyaamin.com\n");
 }
