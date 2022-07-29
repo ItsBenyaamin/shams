@@ -1,5 +1,8 @@
 # Shams
-Calendar is a common tools which we need it to keep attention to the days of our life:)  
+Shams is a Persian(Jalali) Calendar.
+
+Calendar is a common tools which we need it to keep attention to the Days of Our Lives.
+
 Well let's have it in terminal.   
 
 ![screenshot](/assets/shams-pic.jpg)  
