@@ -1,19 +1,23 @@
 # Shams
-calendar is a common tools which we need it to keep attention to the days of our life:)  
-well let's have it in terminal.  
-P.S: this is rust version of [pouriya/tir](https://github.com/pouriya/tir) written in python by Pouriya.  
+Shams is a Persian(Jalali) Calendar.
 
-![screenshot](https://github.com/graymind75/shams/raw/main/assets/Screenshot_20201105_222232.png)  
+Calendar is a common tools which we need it to keep attention to the Days of Our Lives.
+
+Well let's have it in terminal.   
+
+![screenshot](/assets/shams-pic.jpg)  
 
 ## Installation
-you can [download](https://github.com/graymind75/shams/releases) last release binary from release section and put it in `/usr/local/bin` to run it wherever you want in terminal. 
-##### do not forget give executable permission to the binary: `sudo chmod +x shams`
+[Download](https://github.com/graymind75/shams/releases) last binary from release section.
+
+### - Linux
+  * Put it in `/usr/bin` to run it wherever you want in terminal. 
+  * ##### DO NOT forget to give executable permission to the binary: `sudo chmod +x shams`
+
+### - Windows
+  * Create a `C:\bin\` folder.
+
+  * Edit `Environment Variables` and add `C:\bin\` to PATH.
 
 ## Usage
-it's simple to use. just enter `shams` wherever you want!
-```
-Usage: shams [options]
-  -h, --help      show help and exit
-  -u, --update    update the cache data
-  -a, --about     some words about program
-```
+It's simple to use. just enter `shams` wherever you want!
