@@ -113,7 +113,7 @@ pub fn print_calendar(calendar: &mut Calendar) {
 Emruz: {}  {}  {}({})  {}  {}
         ",
         week_day,
-        calendar.today + 1,
+        calendar.today,
         calendar.month_name,
         calendar.this_month,
         calendar.this_year,
